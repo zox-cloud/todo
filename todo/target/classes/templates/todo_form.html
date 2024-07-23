@@ -1,0 +1,102 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Create/Update ToDo</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create/Update ToDo</h1>-->
+<!--<form th:action="@{/todos/save}" th:object="${todo}" method="post">-->
+<!--    <input type="hidden" th:field="*{id}" />-->
+<!--    <div>-->
+<!--        <label>Task</label>-->
+<!--        <input type="text" th:field="*{task}" />-->
+<!--        <span th:if="${#fields.hasErrors('task')}" th:errors="*{task}">Error</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label>Completed</label>-->
+<!--        <input type="checkbox" th:field="*{completed}" />-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button type="submit">Save</button>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<a href="/todos">Back to List</a>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create/Update ToDo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        .form-group button {
+            background-color: #6a11cb;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Create/Update ToDo</h1>
+    <form th:action="@{/todos/save}" th:object="${todo}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="form-group">
+            <label>Task</label>
+            <input type="text" th:field="*{task}" placeholder="Enter your task..." />
+            <span th:if="${#fields.hasErrors('task')}" th:errors="*{task}">Error</span>
+        </div>
+        <div class="form-group">
+            <label>Completed</label>
+            <input type="checkbox" th:field="*{completed}" />
+        </div>
+        <div class="form-group">
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <a href="/todos">Back to List</a>
+</div>
+</body>
+</html>

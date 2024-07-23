@@ -1,0 +1,146 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>ToDo List</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>ToDo List</h1>-->
+<!--<a href="/todos/new">Create New ToDo</a>-->
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Task</th>-->
+<!--        <th>Completed</th>-->
+<!--        <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="todo : ${todos}">-->
+<!--        <td th:text="${todo.task}">Task</td>-->
+<!--        <td th:text="${todo.completed ? 'Yes' : 'No'}">Completed</td>-->
+<!--        <td>-->
+<!--            <a th:href="@{/todos/edit/{id}(id=${todo.id})}">Edit</a>-->
+<!--            <a th:href="@{/todos/delete/{id}(id=${todo.id})}">Delete</a>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+        .title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .new-todo {
+            margin-bottom: 1rem;
+        }
+        .new-todo input {
+            width: calc(100% - 2rem);
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        .new-todo input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .todo-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .todo-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        .todo-item label {
+            color: #fff;
+            flex-grow: 1;
+            margin-right: 0.5rem;
+            word-break: break-all;
+        }
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .actions a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        .actions a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .form-group button {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background-color: #6a11cb;
+            color: #fff;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="title">TODO</h1>
+    <div class="new-todo">
+        <a href="/todos/new">Create New ToDo</a>
+    </div>
+    <ul class="todo-list">
+        <tr th:each="todo : ${todos}">
+            <li class="todo-item">
+                <input type="checkbox" th:checked="${todo.completed}" id="task[[${todo.id}]]">
+                <label th:for="'task' + ${todo.id}" th:text="${todo.task}">Task</label>
+                <div class="actions">
+                    <a th:href="@{/todos/edit/{id}(id=${todo.id})}">Edit</a>
+                    <a th:href="@{/todos/delete/{id}(id=${todo.id})}">Delete</a>
+                </div>
+            </li>
+        </tr>
+    </ul>
+</div>
+</body>
+</html>
+
